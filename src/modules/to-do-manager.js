@@ -45,7 +45,7 @@ class ToDoListManager {
     };
 
     this.tasks.push(obj);
-    this.listView.appendChild(this.render(obj));
+    ToDoListManager.listView.appendChild(ToDoListManager.render(obj));
 
     this.commitTasks();
   }
@@ -60,21 +60,21 @@ class ToDoListManager {
     let index = 0;
 
     if (component === undefined) {
-      this.listView.querySelectorAll(':checked').forEach(({ parentElement }) => {
+      ToDoListManager.listView.querySelectorAll(':checked').forEach(({ parentElement }) => {
         delete this.tasks[parseInt(parentElement.id, 10)];
-        this.listView.removeChild(parentElement);
+        ToDoListManager.listView.removeChild(parentElement);
       });
       this.tasks = this.tasks.filter((obj) => obj !== undefined);
     } else {
       index = parseInt(component.id, 10);
 
       this.tasks.splice(index, 1);
-      this.listView.removeChild(component);
+      ToDoListManager.listView.removeChild(component);
     }
 
     for (index; index < this.tasks.length; index += 1) {
       this.tasks[index].index = index;
-      this.listView.children[index].id = index;
+      ToDoListManager.listView.children[index].id = index;
     }
 
     this.commitTasks();
@@ -92,7 +92,7 @@ class ToDoListManager {
   populate() {
     return new Promise((resolve, rej) => {
       this.tasks.forEach((obj) => {
-        this.listView.appendChild(this.render(obj));
+        ToDoListManager.listView.appendChild(ToDoListManager.render(obj));
       });
 
       resolve();
