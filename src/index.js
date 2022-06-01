@@ -47,7 +47,7 @@ function propClearBtn() {
 function render({ index, description, completed: state }) {
   const component = document.createElement('li');
   component.id = index;
-  component.className = 'row'
+  component.className = 'row';
 
   if (state) component.classList.add('status-completed');
 
@@ -77,7 +77,7 @@ function createTask(event) {
 function populateToDoList() {
   return new Promise((resolve, rej) => {
     toDoList.forEach((task) => {
-      toDoListContainer.appendChild( render(task) );
+      toDoListContainer.appendChild(render(task));
     });
 
     resolve();
@@ -89,11 +89,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.forms[0].addEventListener('submit', createTask);
 
-  document.body.querySelector('.to-do-clear-btn')
-    .onclick = () => {
-      Array.from(toDoListContainer.children).forEach((task) => {
-        if (task.children[0].checked) toDoListContainer.removeChild(task);
-      });
+  document.body.querySelector('.to-do-clear-btn').onclick = () => {
+    Array.from(toDoListContainer.children).forEach((task) => {
+      if (task.children[0].checked) toDoListContainer.removeChild(task);
+    });
   };
 
   document.body.addEventListener('click', ({ target }) => {

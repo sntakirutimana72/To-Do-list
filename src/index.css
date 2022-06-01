@@ -106,10 +106,6 @@ button {
   cursor: pointer;
 }
 
-button:focus {
-  border: none;
-}
-
 li button {
   cursor: move;
 }
@@ -117,6 +113,10 @@ li button {
 .to-do-refresh-btn,
 li button {
   background: none;
+}
+
+button:focus {
+  border: none;
 }
 
 .to-do-clear-btn {
