@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# microverse-html-css-template
+# To-Do-List
 
-> A Microverse GitHub template for projects built with _`html`_, _`css`_, and _`javascript`_ only.
+This app is designed to offer the same functionalities as an actual **To-Do-List** application.
 
 
 ## Built With
@@ -13,10 +13,9 @@
 - Webpack
 
 
-## Live Demo (if available)
+## Screenshots
 
-
-## Screenshots (if available)
+![](./app-screenshot.png)
 
 
 ## Getting Started
@@ -78,3 +77,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Fellow Micronauts
+
+## 📝 License
+
+This project is [MIT]() licensed.
