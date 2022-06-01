@@ -1,5 +1,5 @@
 import {
-  create, populate, remove, setState, enableEdit, disableEdit
+  create, populate, remove, setState, enableEdit, disableEdit,
 } from './modules/to-do-manager.js';
 import './index.css';
 

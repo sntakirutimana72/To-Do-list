@@ -16,11 +16,11 @@ class ToDoListManager {
     localStorage.setItem(this.dataFinder, JSON.stringify(this.tasks));
   }
 
-  get listView() {
+  static get listView() {
     return document.body.querySelector('.to-do-list');
   }
 
-  render({ index, description, completed }) {
+  static render({ index, description, completed }) {
     const component = document.createElement('li');
 
     component.id = index;
@@ -40,7 +40,7 @@ class ToDoListManager {
   create(description) {
     const obj = {
       index: this.tasks.length,
-      description: description,
+      description,
       completed: false,
     };
 
@@ -60,7 +60,7 @@ class ToDoListManager {
     let index = 0;
 
     if (component === undefined) {
-      this.listView.querySelectorAll(':checked').forEach(({parentElement}) => {
+      this.listView.querySelectorAll(':checked').forEach(({ parentElement }) => {
         delete this.tasks[parseInt(parentElement.id, 10)];
         this.listView.removeChild(parentElement);
       });
@@ -72,7 +72,7 @@ class ToDoListManager {
       this.listView.removeChild(component);
     }
 
-    for (index; index < this.tasks.length; index++) {
+    for (index; index < this.tasks.length; index += 1) {
       this.tasks[index].index = index;
       this.listView.children[index].id = index;
     }
@@ -98,7 +98,7 @@ class ToDoListManager {
       resolve();
     });
   }
-};
+}
 
 const toDoListManager = new ToDoListManager();
 
