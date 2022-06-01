@@ -1,19 +1,146 @@
 /* Here you apply all kinds of styling to your app UIs */
 
+@import url(https://use.fontawesome.com/releases/v6.1.1/css/all.css);
+@import url(https://fonts.googleapis.com/css2?family=Inter&display=swap);
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background: #d3d3d3;
 }
 
 * {
+  color: #272727cc;
   font-family: 'Inter', sans-serif;
 }
 
 .any-heading,
 .any-paragraph {
   padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* section */
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+/* form */
+
+form {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 1px 4px black;
+}
+
+/* form heading && field-wrap */
+
+.heading-wrapper,
+.field-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading-wrapper h1 {
+  font-size: 20px;
+}
+
+.heading-wrapper i {
+  transform: rotate(90deg);
+}
+
+.field-wrap span {
+  font-size: 12px;
+  color: #27272757;
+}
+
+/* to-do-list-container */
+
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2px;
+}
+
+.to-do-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+li.status-completed {
+  color: #3f383875;
+}
+
+label {
+  color: inherit;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 24px;
+  width: 100%;
+}
+
+li.status-completed label {
+  text-decoration: line-through;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+button:focus {
+  border: none;
+}
+
+li button {
+  cursor: move;
+}
+
+.to-do-refresh-btn,
+li button {
+  background: none;
+}
+
+.to-do-clear-btn {
+  padding: 15px 5px;
+  width: 100%;
+}
+
+input[type='text'] {
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  padding: 5px;
+}
+
+input[type='text']:focus {
+  outline: none;
+  border: none;
+}
+
+input[type='text']::placeholder {
+  font-style: italic;
+}
+
+.row {
+  padding: 10px 15px;
+  border-bottom: 1px solid #20202025;
 }
