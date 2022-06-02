@@ -1,4 +1,4 @@
-export const $select = (selector, all, parentTree) => {
+const $select = (selector, all, parentTree) => {
   parentTree = document.body;
 
   if (!parentTree) parentTree = document.body;
@@ -8,3 +8,4 @@ export const $select = (selector, all, parentTree) => {
   return parentTree.querySelector(selector);
 };
 
+export default $select;

@@ -1,5 +1,5 @@
-import { tasks, commitTasks, queryTasks } from './storage.js';
-import { $select } from './selectors.js';
+import { TManager, commitTasks, queryTasks } from './storage.js';
+import $select from './selectors.js';
 
 const listView = $select('.to-do-list');
 
@@ -24,12 +24,12 @@ export function create(evt) {
   evt.preventDefault();
 
   const obj = {
-    index: tasks.length,
+    index: TManager.size,
     description: this.elements.desc.value,
     completed: false,
   };
 
-  tasks.push(obj);
+  TManager.assign(obj);
   listView.appendChild(render(obj));
 
   commitTasks();
@@ -41,7 +41,7 @@ export function populate() {
   return new Promise((resolve, rej) => {
     queryTasks();
 
-    tasks.forEach((obj) => listView.appendChild(render(obj)));
+    TManager.tasks.forEach((obj) => listView.appendChild(render(obj)));
 
     resolve();
   });
@@ -56,7 +56,7 @@ export const setDescription = (field) => {
 
   field.setAttribute('disabled', 'true');
 
-  tasks[parseInt(obj.id, 10)].description = field.value;
+  TManager.setDescription(obj.id, field.value);
 
   commitTasks();
 };
@@ -70,21 +70,20 @@ export const remove = (obj) => {
     if (!checked.length) return;
 
     checked.forEach(({ parentElement }) => {
-      delete tasks[parseInt(parentElement.id, 10)];
-
+      TManager.setShadow(parentElement.id);
       listView.removeChild(parentElement);
     });
 
-    tasks = tasks.filter((obj) => obj !== undefined);
+    TManager.filter();
   } else {
     index = parseInt(obj.id, 10);
 
-    tasks.splice(index, 1);
+    TManager.remove(index);
     listView.removeChild(obj);
   }
 
-  for (index; index < tasks.length; index += 1) {
-    tasks[index].index = index;
+  for (index; index < TManager.size; index += 1) {
+    TManager.setIndex(index);
     listView.children[index].id = index;
   }
 

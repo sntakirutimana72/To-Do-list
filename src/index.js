@@ -1,7 +1,9 @@
-import { create, populate, remove, enableEdit, setDescription, } from './modules/CRUD.js';
-import { setState } from './modules/set-state.js';
-import { propClearTaskTrigger } from './modules/actions.js';
-import { $select } from './modules/selectors.js';
+import {
+  create, populate, remove, enableEdit, setDescription,
+} from './modules/CRUD.js';
+import setState from './modules/set-state.js';
+import propClearTaskTrigger from './modules/actions.js';
+import $select from './modules/selectors.js';
 import './index.css';
 
 window.addEventListener('DOMContentLoaded', () => {

@@ -1,10 +1,11 @@
-import { tasks, commitTasks } from "./storage.js";
+import { TManager, commitTasks } from './storage.js';
 
-export const setState = ({ parentElement }) => {
+const setState = ({ parentElement }) => {
   parentElement.classList.toggle('status-completed');
 
-  const uid = parseInt(parentElement.id, 10);
-  tasks[uid].completed = !tasks[uid].completed;
+  TManager.setState(parseInt(parentElement.id, 10));
 
   commitTasks();
 };
+
+export default setState;
