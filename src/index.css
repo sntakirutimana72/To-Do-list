@@ -34,17 +34,20 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 400px;
   min-height: 100vh;
+  max-width: 400px;
   margin: 0 auto;
+}
+
+section > div {
+  background: #fff;
+  box-shadow: 0 1px 4px black;
 }
 
 /* form */
 
 form {
   width: 100%;
-  background: #fff;
-  box-shadow: 0 1px 4px black;
 }
 
 /* form heading && field-wrap */
@@ -88,7 +91,7 @@ li.status-completed {
   color: #3f383875;
 }
 
-label {
+.field-desc {
   color: inherit;
   font-family: inherit;
   font-size: 15px;
@@ -96,7 +99,7 @@ label {
   width: 100%;
 }
 
-li.status-completed label {
+li.status-completed .field-desc {
   text-decoration: line-through;
 }
 
@@ -129,6 +132,7 @@ input[type='text'] {
   border: none;
   width: 100%;
   padding: 5px;
+  background: none;
 }
 
 input[type='text']:focus {
