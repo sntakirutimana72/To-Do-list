@@ -28,6 +28,10 @@ class TasksManager {
     this.allTasks[index].completed = !state;
   }
 
+  get hasDisabled() {
+    return this.allTasks.find(({completed}) => completed === true) !== undefined;
+  }
+
   setIndex(index) {
     this.allTasks[index].index = index;
   }

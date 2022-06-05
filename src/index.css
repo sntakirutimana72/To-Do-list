@@ -127,6 +127,10 @@ button:focus {
   width: 100%;
 }
 
+.to-do-clear-btn:disabled {
+  cursor: not-allowed;
+}
+
 input[type='text'] {
   box-sizing: border-box;
   border: none;

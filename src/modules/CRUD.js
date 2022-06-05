@@ -1,10 +1,11 @@
 import { TManager, commitTasks, queryTasks } from './storage.js';
-import $select from './selectors.js';
+import { $select, $prop, createElement } from './selectors.js';
+import propClearTaskTrigger from './actions.js';
 
 const listView = $select('.to-do-list');
 
 const render = ({ index, description, completed }) => {
-  const component = document.createElement('li');
+  const component = createElement('li');
 
   component.id = index;
   component.className = 'row';
@@ -43,6 +44,8 @@ export function populate() {
 
     TManager.tasks.forEach((obj) => listView.appendChild(render(obj)));
 
+    if (TManager.hasDisabled) propClearTaskTrigger();
+
     resolve();
   });
 }
@@ -54,7 +57,7 @@ export const setDescription = (field) => {
   button.classList.remove('fa-trash');
   button.classList.add('fa-ellipsis-vertical');
 
-  field.setAttribute('disabled', 'true');
+  $attrib(field, 'disabled', true);
 
   TManager.setDescription(obj.id, field.value);
 
@@ -65,21 +68,21 @@ export const remove = (obj) => {
   let index = 0;
 
   if (obj === undefined) {
-    const checked = $select(':checked', true, listView);
-
-    if (!checked.length) return;
-
-    checked.forEach(({ parentElement }) => {
+    $select(':checked', true, listView).forEach(({ parentElement }) => {
       TManager.setShadow(parentElement.id);
       listView.removeChild(parentElement);
     });
 
     TManager.filter();
+    propClearTaskTrigger();
+
   } else {
     index = parseInt(obj.id, 10);
 
     TManager.remove(index);
     listView.removeChild(obj);
+
+    if (obj.children[0].checked & !TManager.hasDisabled) propClearTaskTrigger();
   }
 
   for (index; index < TManager.size; index += 1) {
@@ -97,6 +100,6 @@ export const enableEdit = (button) => {
     button.classList.remove('fa-ellipsis-vertical');
     button.classList.add('fa-trash');
 
-    obj.children[1].removeAttribute('disabled');
+    $prop(obj.children[1], 'disabled');
   } else remove(obj);
 };
