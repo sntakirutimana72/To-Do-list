@@ -21,6 +21,15 @@ const renderTaskTemplate = ({ index, description, completed }) => {
   return component;
 };
 
+const reorderTasks = (index = 0) => {
+  for (index; index < TManager.size; index += 1) {
+    TManager.setIndex(index);
+    listView.children[index].id = index;
+  }
+
+  commitTasks();
+};
+
 const alterTaskOptionButton = (element) => {
   const [, , button] = element.children;
 
@@ -54,7 +63,7 @@ export const removeTask = ({ parentElement }) => {
   listView.removeChild(parentElement);
   reorderTasks(index);
 
-  if (parentElement.children[0].checked & !TManager.hasDisabled) propClearTaskTrigger();
+  if (parentElement.children[0].checked && !TManager.hasDisabled) propClearTaskTrigger();
 };
 
 export function createNewTask(event) {
@@ -93,15 +102,6 @@ export const setTaskDescription = (field) => {
 
   field.placeholder = field.value;
   field.value = '';
-
-  commitTasks();
-};
-
-const reorderTasks = (index = 0) => {
-  for (index; index < TManager.size; index += 1) {
-    TManager.setIndex(index);
-    listView.children[index].id = index;
-  }
 
   commitTasks();
 };

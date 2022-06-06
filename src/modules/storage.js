@@ -37,7 +37,7 @@ class TasksManager {
   }
 
   get hasDisabled() {
-    return this.allTasks.find(({completed}) => completed === true) !== undefined;
+    return this.allTasks.find(({ completed }) => completed === true) !== undefined;
   }
 
   setIndex(index) {

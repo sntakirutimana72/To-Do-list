@@ -4,9 +4,7 @@
  * @param {HTMLElement} parentTree
  * @returns
  */
-export const $select = (selector, parentTree = document.body) => {
-  return parentTree.querySelector(selector);
-};
+export const $select = (selector, tree = document.body) => tree.querySelector(selector);
 
 /**
  *
@@ -14,9 +12,7 @@ export const $select = (selector, parentTree = document.body) => {
  * @param {HTMLElement} parentTree
  * @returns
  */
- export const $selectAll = (selector, parentTree = document.body) => {
-  return parentTree.querySelectorAll(selector);
-};
+export const $selectAll = (selector, tree = document.body) => tree.querySelectorAll(selector);
 
 /**
  *
@@ -45,7 +41,7 @@ export const $is = (element, attribute) => element.hasAttribute(attribute);
  * @param {String} attribute
  * @returns
  */
- export const $prop = (element, attribute) => element.removeAttribute(attribute);
+export const $prop = (element, attribute) => element.removeAttribute(attribute);
 
 /**
  *

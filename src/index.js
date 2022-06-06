@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } else if (target.classList.contains('task-desc')) {
       onTaskSelect(target);
     } else if (target.classList.contains('task-item')) {
-      onTaskSelect({parentElement: target});
+      onTaskSelect({ parentElement: target });
     }
   });
 

@@ -1,4 +1,6 @@
-import { $select, $attrib, $is, $prop } from './selectors.js';
+import {
+  $select, $attrib, $is, $prop,
+} from './selectors.js';
 
 const propClearTaskTrigger = (enforce) => {
   const trigger = $select('.to-do-clear-btn');
