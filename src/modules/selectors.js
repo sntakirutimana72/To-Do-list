@@ -1,11 +1,51 @@
-const $select = (selector, all, parentTree) => {
-  parentTree = document.body;
+/**
+ *
+ * @param {String} selector
+ * @param {HTMLElement} parentTree
+ * @returns
+ */
+export const $select = (selector, tree = document.body) => tree.querySelector(selector);
 
-  if (!parentTree) parentTree = document.body;
+/**
+ *
+ * @param {String} selector
+ * @param {HTMLElement} parentTree
+ * @returns
+ */
+export const $selectAll = (selector, tree = document.body) => tree.querySelectorAll(selector);
 
-  if (all === true) return parentTree.querySelectorAll(selector);
+/**
+ *
+ * @param {HTMLElement} element
+ * @param {String} attribute
+ * @param {String | Boolean | undefined} value
+ * @returns
+ */
+export const $attrib = (element, attribute, value) => {
+  if (value === undefined) return element.getAttribute(attribute);
 
-  return parentTree.querySelector(selector);
+  element.setAttribute(attribute, value);
 };
 
-export default $select;
+/**
+ *
+ * @param {HTMLElement} element
+ * @param {String} attribute
+ * @returns
+ */
+export const $is = (element, attribute) => element.hasAttribute(attribute);
+
+/**
+ *
+ * @param {HTMLElement} element
+ * @param {String} attribute
+ * @returns
+ */
+export const $prop = (element, attribute) => element.removeAttribute(attribute);
+
+/**
+ *
+ * @param {String} tagName
+ * @returns
+ */
+export const createElement = (tagName) => document.createElement(tagName);
