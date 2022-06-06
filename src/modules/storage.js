@@ -13,19 +13,27 @@ class TasksManager {
 
   set tasks(tasks) {
     this.allTasks = tasks;
+
+    return this;
   }
 
   assign(task) {
     this.allTasks.push(task);
+
+    return this;
   }
 
-  setDescription(index, desc) {
-    this.allTasks[parseInt(index, 10)].description = desc;
+  setDescription(index, description) {
+    this.allTasks[parseInt(index, 10)].description = description;
+
+    return this;
   }
 
   setState(index) {
     const state = this.allTasks[index].completed;
     this.allTasks[index].completed = !state;
+
+    return this;
   }
 
   get hasDisabled() {
@@ -34,19 +42,26 @@ class TasksManager {
 
   setIndex(index) {
     this.allTasks[index].index = index;
+
+    return this;
   }
 
   setShadow(index) {
     delete this.allTasks[parseInt(index, 10)];
+
+    return this;
   }
 
   filter() {
-    const unfiltered = [...this.allTasks];
-    this.allTasks = unfiltered.filter((task) => task !== undefined);
+    this.allTasks = this.allTasks.filter((task) => task !== undefined);
+
+    return this;
   }
 
   remove(index) {
     this.allTasks.splice(index, 1);
+
+    return this;
   }
 }
 
@@ -55,7 +70,7 @@ export const TManager = new TasksManager();
 export const queryTasks = () => {
   const temp = localStorage.getItem(dataKey);
 
-  if (temp) TManager.tasks = JSON.parse(temp);
+  if (temp !== null) TManager.tasks = JSON.parse(temp);
 };
 
 export const commitTasks = () => localStorage.setItem(dataKey, JSON.stringify(TManager.tasks));

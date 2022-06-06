@@ -1,18 +1,21 @@
 /**
  *
  * @param {String} selector
- * @param {Boolean | undefined} all
- * @param {HTMLElement | undefined} parentTree
+ * @param {HTMLElement} parentTree
  * @returns
  */
-export const $select = (selector, all, parentTree) => {
-  parentTree = document.body;
-
-  if (!parentTree) parentTree = document.body;
-
-  if (all === true) return parentTree.querySelectorAll(selector);
-
+export const $select = (selector, parentTree = document.body) => {
   return parentTree.querySelector(selector);
+};
+
+/**
+ *
+ * @param {String} selector
+ * @param {HTMLElement} parentTree
+ * @returns
+ */
+ export const $selectAll = (selector, parentTree = document.body) => {
+  return parentTree.querySelectorAll(selector);
 };
 
 /**

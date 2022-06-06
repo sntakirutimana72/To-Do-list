@@ -16,23 +16,28 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.any-heading,
-.any-paragraph {
+.no-spacing {
   padding: 0;
   margin: 0;
 }
 
+.d-flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 /* section */
 
 section {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   min-height: 100vh;
   max-width: 400px;
@@ -54,9 +59,7 @@ form {
 
 .heading-wrapper,
 .field-wrap {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .heading-wrapper h1 {
@@ -75,23 +78,28 @@ form {
 /* to-do-list-container */
 
 .to-do-list {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   gap: 2px;
 }
 
 .to-do-list li {
-  display: flex;
-  align-items: center;
   gap: 10px;
 }
 
-li.status-completed {
+.status-completed {
   color: #3f383875;
 }
 
-.field-desc {
+.task-selected {
+  background: #101030;
+  color: grey !important;
+}
+
+.task-selected .task-desc::placeholder {
+  color: inherit;
+}
+
+.task-desc {
   color: inherit;
   font-family: inherit;
   font-size: 15px;
@@ -99,7 +107,7 @@ li.status-completed {
   width: 100%;
 }
 
-li.status-completed .field-desc {
+.status-completed .task-desc {
   text-decoration: line-through;
 }
 
@@ -120,6 +128,11 @@ li button {
 
 button:focus {
   border: none;
+}
+
+button.fa-trash {
+  cursor: pointer;
+  color: grey;
 }
 
 .to-do-clear-btn {
@@ -144,7 +157,7 @@ input[type='text']:focus {
   border: none;
 }
 
-input[type='text']::placeholder {
+input[name='desc']::placeholder {
   font-style: italic;
 }
 
