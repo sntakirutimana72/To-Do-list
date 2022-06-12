@@ -70,9 +70,10 @@ form {
   transform: rotate(90deg);
 }
 
-.field-wrap span {
-  font-size: 12px;
-  color: #27272757;
+.field-wrap span i {
+  font-size: 15px;
+  color: #2727273d;
+  transform: rotate(90deg);
 }
 
 /* to-do-list-container */

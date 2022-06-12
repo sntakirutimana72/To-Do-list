@@ -49,3 +49,18 @@ export const $prop = (element, attribute) => element.removeAttribute(attribute);
  * @returns
  */
 export const createElement = (tagName) => document.createElement(tagName);
+
+export class Dom {
+
+  static get listView() {
+    return $select('.to-do-list');
+  }
+
+  static get descInput() {
+    return $select(`[name='desc']`);
+  }
+
+  static get clearCompletedBtn() {
+    return $select('.to-do-clear-btn');
+  }
+}
