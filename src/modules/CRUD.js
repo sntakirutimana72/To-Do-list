@@ -109,7 +109,7 @@ export const setTaskDescription = (field) => {
 };
 
 export const removeCompletedTasks = () => {
-  $selectAll(':checked', listView).forEach(({ parentElement }) => {
+  $selectAll(':checked', Dom.listView).forEach(({ parentElement }) => {
     TManager.setShadow(parentElement.id);
     Dom.listView.removeChild(parentElement);
   });

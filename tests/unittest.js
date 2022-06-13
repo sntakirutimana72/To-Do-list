@@ -23,9 +23,9 @@ document.body.innerHTML = `
   </section>
 `;
 
-export const dispatch = (event, scope = window) => {
-  scope.dispatchEvent(new Event(event));
-};
+export const dispatch = (
+  evt, trigger = window, kwargs = { bubbles: false }
+  ) => trigger.dispatchEvent(new Event(evt, kwargs));
 
 export const setup = () => {
   window.addEventListener('DOMContentLoaded', onready);
@@ -38,39 +38,31 @@ export const teardown = () => {
   Dom.listView.innerHTML = '';
 };
 
-export const newDummyTask = (index, description, state = false) => {
-  return {
-    index,
-    description,
-    completed: state,
-  };
-};
-
 export const TASK_DUMMIES = [
   {
     index: 0,
     description: 'task 1',
-    Completed: false,
+    completed: false,
   },
   {
     index: 1,
     description: 'task 2',
-    Completed: false,
+    completed: false,
   },
   {
     index: 2,
     description: 'task ',
-    Completed: true,
+    completed: true,
   },
   {
     index: 3,
     description: 'task 4',
-    Completed: false,
+    completed: false,
   },
   {
     index: 4,
     description: 'task 5',
-    Completed: false,
+    completed: false,
   },
 ];
 
@@ -79,7 +71,7 @@ export class TestCase {
   static createTask(description = '', expectedLength = 0) {
     Dom.descInput.value = description;
 
-    dispatch('submit', document.forms[0]);
+    document.forms[0].submit();
 
     expect(Dom.listView.children).toHaveLength(expectedLength);
     expect(TManager.tasks).toHaveLength(expectedLength);

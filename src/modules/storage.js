@@ -1,4 +1,4 @@
-const dataKey = 'to-do-list';
+export const dataKey = 'to-do-list';
 
 class TasksManager {
   constructor() {
