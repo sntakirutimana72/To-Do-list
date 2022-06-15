@@ -24,8 +24,8 @@ document.body.innerHTML = `
 `;
 
 export const dispatch = (
-  evt, trigger = window, kwargs = { bubbles: false }
-  ) => trigger.dispatchEvent(new Event(evt, kwargs));
+  evt, trigger = window, kwargs = { bubbles: false },
+) => trigger.dispatchEvent(new Event(evt, kwargs));
 
 export const setup = () => {
   window.addEventListener('DOMContentLoaded', onready);
@@ -67,7 +67,6 @@ export const TASK_DUMMIES = [
 ];
 
 export class TestCase {
-
   static createTask(description = '', expectedLength = 0) {
     Dom.descInput.value = description;
 

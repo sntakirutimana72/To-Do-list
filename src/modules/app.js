@@ -9,7 +9,7 @@ import {
 import setTaskState from './set-state.js';
 import { Dom } from './selectors.js';
 
-export default function() {
+export default function onready() {
   populateTasks().then(() => {});
 
   document.forms[0].onsubmit = createNewTask;
@@ -34,4 +34,4 @@ export default function() {
       setTaskState(target);
     }
   });
-};
+}

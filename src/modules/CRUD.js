@@ -1,5 +1,7 @@
 import { TManager, commitTasks, queryTasks } from './storage.js';
-import { $select, $selectAll, createElement, Dom } from './selectors.js';
+import {
+  $select, $selectAll, createElement, Dom,
+} from './selectors.js';
 import propClearTaskTrigger from './actions.js';
 
 const renderTaskTemplate = ({ index, description, completed }) => {

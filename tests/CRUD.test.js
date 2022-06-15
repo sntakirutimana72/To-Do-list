@@ -24,11 +24,11 @@ describe('Create New', () => {
   test('With valid description', () => {
     TestCase.createTask(TASK_DUMMIES[0].description, 1);
 
-    const listView = Dom.listView;
+    const { listView } = Dom;
 
     expect(listView.children).toHaveLength(1);
     expect(listView.firstChild.firstChild.checked).toBeFalsy();
-    expect(listView.firstChild.children[1].placeholder).toBe(TASK_DUMMIES[0].description)
+    expect(listView.firstChild.children[1].placeholder).toBe(TASK_DUMMIES[0].description);
     expect(TManager.tasks).toHaveLength(1);
   });
 });
@@ -41,7 +41,7 @@ describe('Change Description', () => {
     const [, descInput] = element.children;
     descInput.value = TASK_DUMMIES[1].description;
 
-    dispatch('change', descInput, {bubbles: true});
+    dispatch('change', descInput, { bubbles: true });
 
     expect(descInput.value).toHaveLength(0);
     expect(descInput.placeholder).toBe(TASK_DUMMIES[1].description);
@@ -51,9 +51,9 @@ describe('Change Description', () => {
 
 describe('Remove Task', () => {
   test('All completed', () => {
-    TASK_DUMMIES.forEach(({description}, k) => TestCase.createTask(description, ++k));
+    TASK_DUMMIES.forEach(({ description }, k) => TestCase.createTask(description, ++k));
 
-    const listView = Dom.listView;
+    const { listView } = Dom;
 
     expect(TManager.tasks).toHaveLength(TASK_DUMMIES.length);
     expect(listView.children).toHaveLength(TASK_DUMMIES.length);
@@ -64,7 +64,7 @@ describe('Remove Task', () => {
     expect(TManager.tasks).toHaveLength(TASK_DUMMIES.length - 3);
     expect(listView.children).toHaveLength(TASK_DUMMIES.length - 3);
 
-    TManager.tasks.forEach(({completed, index, description}, l) => {
+    TManager.tasks.forEach(({ completed, index, description }, l) => {
       expect(completed).toBeFalsy();
       expect(index).toBe(l);
       expect(listView.children[index].id).toBe(`${index}`);
@@ -72,9 +72,9 @@ describe('Remove Task', () => {
     });
   });
   test('Only individual', () => {
-    TASK_DUMMIES.slice(0, 3).forEach(({description}, k) => TestCase.createTask(description, ++k));
+    TASK_DUMMIES.slice(0, 3).forEach(({ description }, k) => TestCase.createTask(description, ++k));
 
-    const listView = Dom.listView;
+    const { listView } = Dom;
 
     expect(TManager.tasks).toHaveLength(3);
     expect(listView.children).toHaveLength(3);
@@ -86,7 +86,7 @@ describe('Remove Task', () => {
     expect(TManager.tasks).toHaveLength(2);
     expect(listView.children).toHaveLength(2);
 
-    TManager.tasks.forEach(({completed, index, description}, l) => {
+    TManager.tasks.forEach(({ completed, index, description }, l) => {
       expect(completed).toBeFalsy();
       expect(index).toBe(l);
       expect(listView.children[index].id).toBe(`${index}`);
@@ -115,12 +115,12 @@ describe('Populate Tasks', () => {
 describe('Select Task', () => {
   test('by clicking description input field', () => {
     TASK_DUMMIES.slice(0, 2).forEach(
-      ({description}, j) => TestCase.createTask(description, ++j)
+      ({ description }, j) => TestCase.createTask(description, ++j),
     );
     const [firstChild, secondChild] = Dom.listView.children;
     firstChild.children[1].click();
     expect(firstChild.classList.contains('task-selected')).toBeTruthy();
-    dispatch('click', secondChild, {bubbles: true});
+    dispatch('click', secondChild, { bubbles: true });
     expect(firstChild.classList.contains('task-selected')).toBeFalsy();
     expect(secondChild.classList.contains('task-selected')).toBeTruthy();
   });
