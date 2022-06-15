@@ -2,7 +2,7 @@
 
 # To-Do-List
 
-This app is designed to offer the same functionalities as an actual **To-Do-List** application.
+This app is designed to offer the same functionalities as an actual **To-Do-List** application where user can create a task, change description of a task, change status of a task, and delete a task. In addition, the app preserves user data into the browser storage, allowing user to reaccess their data even after they've reloaded the browser.
 
 
 ## Built With
@@ -20,7 +20,18 @@ For live version, pleave visit [To-Do-Link](https://sntakirutimana72.github.io/T
 
 ## Screenshots
 
-![](./app-screenshot.png)
+<table>
+  <tr>
+    <td>First Screen Page</td>
+    <td>With Tasks</td>
+    <td>With Selected Tasks</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/without-tasks.png" width=400 height=200></td>
+    <td><img src="screenshots/with-tasks.png" width=300 height=200></td>
+    <td><img src="screenshots/with-selection.png" width=300 height=200></td>
+  </tr>
+ </table>
 
 
 ## Getting Started
@@ -47,20 +58,26 @@ Open _Terminal/Shell_ inside your _VSCode_ and run
 
 ### Run tests
 
-- For _hint_ tests, run
+- For _**webhint**_ tests, run
   ```
     npm run lint:hint
   ```
-- For _style_ tests, run
+- For _**stylelint**_ tests, run
   ```
     npm run lint:style
   ```
-- For _eslint_ tests, run
+- For _**eslint**_ tests, run
   ```
     npm run lint:es
   ```
-
-### Deployment
+- To run a _**local server**_, run
+  ```
+    npm start
+  ```
+- For testing _**functionalities**_, run
+  ```
+    npm test
+  ```
 
 
 ## Authors
