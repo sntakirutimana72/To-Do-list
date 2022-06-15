@@ -1,11 +1,15 @@
 import {
-  createNewTask, populateTasks, removeCompletedTasks,
-  removeTask, setTaskDescription, onTaskSelect,
+  createNewTask,
+  populateTasks,
+  removeCompletedTasks,
+  removeTask,
+  setTaskDescription,
+  onTaskSelect,
 } from './CRUD.js';
 import setTaskState from './set-state.js';
 import { Dom } from './selectors.js';
 
-export const onready = () => {
+export default function() {
   populateTasks().then(() => {});
 
   document.forms[0].onsubmit = createNewTask;

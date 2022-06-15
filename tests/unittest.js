@@ -1,5 +1,5 @@
+import onready from '../src/modules/app.js';
 import { Dom } from '../src/modules/selectors.js';
-import { onready } from '../src/modules/main.js';
 import { TManager, dataKey } from '../src/modules/storage.js';
 
 document.body.innerHTML = `
