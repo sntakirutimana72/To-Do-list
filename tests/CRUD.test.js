@@ -2,7 +2,11 @@
  * @jest-environment jsdom
  */
 import {
-  TASK_DUMMIES, setup, teardown, dispatch, TestCase,
+  TASK_DUMMIES,
+  setup,
+  teardown,
+  dispatch,
+  TestCase,
 } from './unittest.js';
 import { populateTasks } from '../src/modules/CRUD.js';
 import { TManager, dataKey } from '../src/modules/storage.js';
@@ -75,8 +79,9 @@ describe('Remove Task', () => {
     expect(TManager.tasks).toHaveLength(3);
     expect(listView.children).toHaveLength(3);
 
-    listView.children[1].children[0].click();
-    listView.children[1].children[2].click();
+    const [, secondChild] = listView.children;
+    secondChild.children[0].click();
+    secondChild.children[2].click();
 
     expect(TManager.tasks).toHaveLength(2);
     expect(listView.children).toHaveLength(2);
@@ -104,5 +109,19 @@ describe('Populate Tasks', () => {
     expect(Dom.listView.children).toHaveLength(TEMP.length);
     expect(TManager.tasks).toHaveLength(TEMP.length);
     expect(Dom.listView.children[1].children[0].checked).toBeTruthy();
+  });
+});
+
+describe('Select Task', () => {
+  test('by clicking description input field', () => {
+    TASK_DUMMIES.slice(0, 2).forEach(
+      ({description}, j) => TestCase.createTask(description, ++j)
+    );
+    const [firstChild, secondChild] = Dom.listView.children;
+    firstChild.children[1].click();
+    expect(firstChild.classList.contains('task-selected')).toBeTruthy();
+    dispatch('click', secondChild, {bubbles: true});
+    expect(firstChild.classList.contains('task-selected')).toBeFalsy();
+    expect(secondChild.classList.contains('task-selected')).toBeTruthy();
   });
 });
