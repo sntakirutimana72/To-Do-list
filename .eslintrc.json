@@ -19,7 +19,9 @@
     }],
     "no-unused-vars": "off",
     "no-undef": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off"
   },
   "ignorePatterns": [
     "dist/",

@@ -1,8 +1,8 @@
 import { TManager, commitTasks, queryTasks } from './storage.js';
-import { $select, $selectAll, createElement } from './selectors.js';
+import {
+  $select, $selectAll, createElement, Dom,
+} from './selectors.js';
 import propClearTaskTrigger from './actions.js';
-
-const listView = $select('.to-do-list');
 
 const renderTaskTemplate = ({ index, description, completed }) => {
   const component = createElement('li');
@@ -24,7 +24,7 @@ const renderTaskTemplate = ({ index, description, completed }) => {
 const reorderTasks = (index = 0) => {
   for (index; index < TManager.size; index += 1) {
     TManager.setIndex(index);
-    listView.children[index].id = index;
+    Dom.listView.children[index].id = index;
   }
 
   commitTasks();
@@ -43,7 +43,7 @@ const alterTaskOptionButton = (element) => {
 };
 
 export const onTaskSelect = ({ parentElement }) => {
-  const currentSelection = $select('.task-selected', listView);
+  const currentSelection = $select('.task-selected', Dom.listView);
 
   if (parentElement === currentSelection) return;
 
@@ -60,7 +60,7 @@ export const removeTask = ({ parentElement }) => {
   const index = parseInt(parentElement.id, 10);
 
   TManager.remove(index);
-  listView.removeChild(parentElement);
+  Dom.listView.removeChild(parentElement);
   reorderTasks(index);
 
   if (parentElement.children[0].checked && !TManager.hasDisabled) propClearTaskTrigger();
@@ -69,14 +69,18 @@ export const removeTask = ({ parentElement }) => {
 export function createNewTask(event) {
   event.preventDefault();
 
+  const description = this.elements.desc.value.trim();
+
+  if (description === '') return;
+
   const newTask = {
     index: TManager.size,
-    description: this.elements.desc.value,
+    description,
     completed: false,
   };
 
   TManager.assign(newTask);
-  listView.appendChild(renderTaskTemplate(newTask));
+  Dom.listView.appendChild(renderTaskTemplate(newTask));
 
   commitTasks();
 
@@ -87,7 +91,7 @@ export function populateTasks() {
   return new Promise((resolve, reject) => {
     queryTasks();
 
-    TManager.tasks.forEach((taskObj) => listView.appendChild(renderTaskTemplate(taskObj)));
+    TManager.tasks.forEach((taskObj) => Dom.listView.appendChild(renderTaskTemplate(taskObj)));
 
     if (TManager.hasDisabled) propClearTaskTrigger();
 
@@ -107,9 +111,9 @@ export const setTaskDescription = (field) => {
 };
 
 export const removeCompletedTasks = () => {
-  $selectAll(':checked', listView).forEach(({ parentElement }) => {
+  $selectAll(':checked', Dom.listView).forEach(({ parentElement }) => {
     TManager.setShadow(parentElement.id);
-    listView.removeChild(parentElement);
+    Dom.listView.removeChild(parentElement);
   });
 
   TManager.filter();
