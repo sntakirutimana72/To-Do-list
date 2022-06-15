@@ -1,65 +1,67 @@
-const dataKey = 'to-do-list';
+export const dataKey = 'to-do-list';
 
 class TasksManager {
-  allTasks = [];
+  constructor() {
+    this._allTasks = [];
+  }
 
   get tasks() {
-    return this.allTasks;
+    return this._allTasks;
   }
 
   get size() {
-    return this.allTasks.length;
+    return this._allTasks.length;
   }
 
   set tasks(tasks) {
-    this.allTasks = tasks;
+    this._allTasks = tasks;
 
     return this;
   }
 
   assign(task) {
-    this.allTasks.push(task);
+    this._allTasks.push(task);
 
     return this;
   }
 
   setDescription(index, description) {
-    this.allTasks[parseInt(index, 10)].description = description;
+    this._allTasks[parseInt(index, 10)].description = description;
 
     return this;
   }
 
   setState(index) {
-    const state = this.allTasks[index].completed;
-    this.allTasks[index].completed = !state;
+    const state = this._allTasks[index].completed;
+    this._allTasks[index].completed = !state;
 
     return this;
   }
 
   get hasDisabled() {
-    return this.allTasks.find(({ completed }) => completed === true) !== undefined;
+    return this._allTasks.find(({ completed }) => completed === true) !== undefined;
   }
 
   setIndex(index) {
-    this.allTasks[index].index = index;
+    this._allTasks[index].index = index;
 
     return this;
   }
 
   setShadow(index) {
-    delete this.allTasks[parseInt(index, 10)];
+    delete this._allTasks[parseInt(index, 10)];
 
     return this;
   }
 
   filter() {
-    this.allTasks = this.allTasks.filter((task) => task !== undefined);
+    this._allTasks = this._allTasks.filter((task) => task !== undefined);
 
     return this;
   }
 
   remove(index) {
-    this.allTasks.splice(index, 1);
+    this._allTasks.splice(index, 1);
 
     return this;
   }
