@@ -2,7 +2,7 @@
 
 # To-Do-List
 
-This app is designed to offer the same functionalities as an actual **To-Do-List** application where user can create a task, change description of a task, change status of a task, and delete a task. In addition, the app preserves user data into the browser storage, allowing user to reaccess their data even after they've reloaded the browser.
+A _**To-DO-List**_ app that allows user to create, update, and remove their daily tasks in and from the browser localstorage. Built with HTLM, CSS, JavaScript, and Webpack.
 
 
 ## Built With
