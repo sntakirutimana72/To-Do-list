@@ -1,7 +1,7 @@
 {
   "name": "to-do-list",
   "version": "1.0.0",
-  "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
+  "description": "A To-DO-List app that allows user to create, update, and remove their daily tasks in and from the browser localstorage. Built with HTLM, CSS, JavaScript, and Webpack.",
   "private": true,
   "scripts": {
     "test": "jest --coverage",
